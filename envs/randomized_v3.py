@@ -10,7 +10,7 @@ import copy
 import argparse
 import sys
 
-from pycolab import ascii_art
+from envs.utils import ascii_art_to_game
 from pycolab import human_ui
 from pycolab import rendering
 from pycolab import things as plab_things
@@ -96,10 +96,10 @@ def make_game(seed=None, demo=False):
                        ['X'],
                        ['P']]
 
-
-    return ascii_art.ascii_art_to_game(
-        delivery_art, what_lies_beneath, sprites, drapes,
+    return ascii_art_to_game(
+        tuple(delivery_art), what_lies_beneath, sprites, drapes,
         update_schedule=update_schedule)
+
 
 def scalar_to_idx(x):
     row = x%14

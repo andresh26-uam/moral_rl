@@ -60,18 +60,18 @@ if __name__ == '__main__':
 
     # Expert 0
     discriminator_0 = Discriminator(state_shape=state_shape, in_channels=in_channels).to(device)
-    discriminator_0.load_state_dict(torch.load('../saved_models/discriminator_v3_[0,1,0,1].pt'))
+    discriminator_0.load_state_dict(torch.load('saved_models/discriminator_v3_[0,1,0,1].pt', map_location=torch.device('cpu')))
     ppo_0 = PPO(state_shape=state_shape, in_channels=in_channels, n_actions=n_actions).to(device)
-    ppo_0.load_state_dict(torch.load('../saved_models/ppo_airl_v3_[0,1,0,1].pt'))
+    ppo_0.load_state_dict(torch.load('saved_models/ppo_airl_v3_[0,1,0,1].pt', map_location=torch.device('cpu')))
     utop_0 = discriminator_0.estimate_utopia(ppo_0, config)
     print(f'Reward Normalization 0: {utop_0}')
     discriminator_0.set_eval()
 
     # Expert 1
     discriminator_1 = Discriminator(state_shape=state_shape).to(device)
-    discriminator_1.load_state_dict(torch.load('../saved_models/discriminator_v3_[0,0,1,1].pt'))
+    discriminator_1.load_state_dict(torch.load('saved_models/discriminator_v3_[0,0,1,1].pt', map_location=torch.device('cpu')))
     ppo_1 = PPO(state_shape=state_shape, in_channels=in_channels, n_actions=n_actions).to(device)
-    ppo_1.load_state_dict(torch.load('../saved_models/ppo_airl_v3_[0,0,1,1].pt'))
+    ppo_1.load_state_dict(torch.load('saved_models/ppo_airl_v3_[0,0,1,1].pt', map_location=torch.device('cpu')))
     utop_1 = discriminator_1.estimate_utopia(ppo_1, config)
     print(f'Reward Normalization 1: {utop_1}')
     discriminator_1.set_eval()

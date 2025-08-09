@@ -2,9 +2,9 @@ import envs.randomized_v3
 import envs.randomized_v2
 from pycolab import rendering
 from typing import Callable
-import gym
-from gym import spaces
-from gym.utils import seeding
+import gymnasium as gym
+from gymnasium import spaces
+from gymnasium.utils import seeding
 import copy
 import numpy as np
 import time
